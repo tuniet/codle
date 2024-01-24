@@ -1,23 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  let code = ["1", "2", "3", "4"]
+  const [inputcode, setinputcode] = useState([]);
+  const [inputid, setinputid] = useState(0)
+  document.onkeydown = function(e) {
+    if(e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 && inputid <= 3){
+      setinputcode([
+        ...inputcode,
+        {id: inputid, number: e.key}
+      ]);
+      setinputid(inputid + 1)
+      console.log(inputid)
+    }
+    else if(e.key.charCodeAt(0) === 66 && inputid > 0){
+      console.log("remove")
+      setinputcode(
+        inputcode.filter(c => c.id !== inputid - 1)
+      );
+      setinputid(inputid - 1)
+    }
+    else if(e.key.charCodeAt(0) === 69){
+      console.log("submit")
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {inputcode.map((input) =>
+      <span>{input.number}</span>)}
     </div>
   );
 }
