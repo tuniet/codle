@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 
 function Game(props) {
 
-  const [yellow, setyellow] = useState(props.yellow);
-  const [rep, setrep] = useState(props.rep);
-  const [codelength, setcodelength] = useState(props.codelength);
+  const yellowact = props.yellow
+  const rep = props.rep
+  const codelength = props.codelength
   
   const [debug, setdebug] = useState(false)
   const forcedcode = []
@@ -86,7 +86,7 @@ function Game(props) {
     code.map((c) => {
       if (c.number === n) {
         if(c.id === i) green = true
-        else yellow = true
+        else if(yellowact)yellow = true
       }
       return c
     })

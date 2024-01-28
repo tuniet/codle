@@ -1,0 +1,35 @@
+
+.diffselection{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.diffbutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    color: white;
+}
+.d0{
+    background-color: grey;
+}
+.d1{
+    background-color: green;
+}
+.d2{
+    background-color: blue;
+}
+.d3{
+    background-color:rgb(173, 162, 0);
+}
+.d4{
+    background-color: rgb(202, 132, 2);
+}
+.d5{
+    background-color: red;
+}
+
