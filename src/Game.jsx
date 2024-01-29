@@ -12,8 +12,7 @@ function Game(props) {
   const [code, setcode] = useState([])
   const [inputcode, setinputcode] = useState([]);
   const [inputid, setinputid] = useState(0);
-  const [listofcodes, setlistofcodes] = useState([])
-
+  const [listofcodes, setlistofcodes] = useState([]);
 
 
   function init(){
@@ -22,11 +21,11 @@ function Game(props) {
     const newCode = []
     for(let i = 0; i < codelength; i++){
       newArr.push({id: i, number:" ", color: "black"});
-      newCode.push( {id: i, number: getRandomInt(10)} )
+      newCode.push({id: i, number: getRandomInt(10)} )
     }
     setinputcode(newArr);
     setcode(newCode)
-    const newList = [];
+    const newList = [{code: [], red: 0, green: 0, yellow: 0}];
     setlistofcodes(newList)
 
     //used only in debug mode
@@ -97,9 +96,27 @@ function Game(props) {
 
   function handleaddrow(){
     const insertAt = 0;
+    let green = 0
+    let yellow = 0
+    let red = 0
+
+    inputcode.map((c) => {
+      console.log(c.color)
+      if (c.color === "green") {
+        green++
+      }
+      else if(c.color === "yellow"){
+        yellow++;
+      }
+      else if(c.color === "red"){
+        red++
+      }
+      return c
+    })
+
     const nexlist = [
       ...listofcodes.slice(0, insertAt),
-      inputcode,
+      {code: inputcode, red: red, green: green, yellow: yellow},
       ...listofcodes.slice(insertAt)
     ];
     setlistofcodes(nexlist);
@@ -112,18 +129,20 @@ function Game(props) {
     }
     setinputcode(newArr)
     setinputid(0)
+    
   }
 
   function handleVictory(){
+    let green = 0   
     if(!debug){
-    let ngreen = 0
     inputcode.map((c) => {
+      console.log(c.color)
       if (c.color === "green") {
-        ngreen++;
+        green++
       }
       return c
     })
-    if(ngreen === codelength){
+    if(green === codelength){
       alert("¡YOU WIN!")
       init();
     }
@@ -137,10 +156,17 @@ function Game(props) {
       {inputcode.map((number) =>
         <span key = {number.id} className='cell'>{number.number}</span>)}
       </div>
-      {listofcodes.map((code, i) =>
+      {listofcodes.map((c, i) =>
       <div key={i} className='code'>
-        {code.map((number) =>
-        <span key = {number.id} className='cell' style={{ color: number.color }}>{number.number}</span>)}
+        {c.code.map((number) =>
+        <span key = {number.id} className='cell' style={{color: number.color}}>{number.number}</span>)}
+        <div> 
+          <span>Red: {c.red}</span>
+          {yellowact &&
+            <span>Yellow: {c.yellow}</span>
+          }
+          <span>Green: {c.green}</span>
+        </div>
       </div>
       )}   
     </div>
