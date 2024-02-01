@@ -129,7 +129,6 @@ function Game(props) {
     }
     setinputcode(newArr)
     setinputid(0)
-    
   }
 
   function handleVictory(){
