@@ -1,48 +1,29 @@
 import './Home.css';
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import Navbar from './Components/Navbar';
 
 function Home(props) {
+  const[backgroundcolor, setbackgroundcolor] = useState("#fff")
   /*
-  Dificulty:
-  0 -> codelength 4, yellow, no rep
-  1 -> codelength 6, yellow, no rep
-  2 -> codelength 6, yellow, rep
-  3 -> codelength 4, no yellow, no rep
-  4 -> codelength 4, no yellow, rep
-  5 -> codelength 6, no yellow, rep
+  Dificulty
+  3 -> codelength 4, yellow
+  4 -> codelength 4, no yellow
+  5 -> codelength 6, no yellow
   */
   function setdiff(difficulty) {
     switch (difficulty) {
       case 0:
         props.setcodelength(4)
         props.setyellow(true)
-        props.setrep(false)
         break;
       case 1:
-        props.setcodelength(6)
-        props.setyellow(true)
-        props.setrep(false)
+        props.setcodelength(4)
+        props.setyellow(false)
         break;
       case 2:
         props.setcodelength(6)
-        props.setyellow(true)
-        props.setrep(true)
-        break;
-      case 3:
-        props.setcodelength(4)
         props.setyellow(false)
-        props.setrep(false)
-        break;
-      case 4:
-        props.setcodelength(4)
-        props.setyellow(false)
-        props.setrep(true)
-        break;
-      case 5:
-        props.setcodelength(6)
-        props.setyellow(false)
-        props.setrep(true)
         break;
       default:
       // do nothing
@@ -50,16 +31,14 @@ function Home(props) {
   }
 
   return (
-    <div className='Game'>
+    <div className='Home' data-theme="dark">
+      <Navbar />
       <h1 className='title'>CODLE</h1>
 			<h3> Select difficulty</h3>
       <div className='diffselection'>
-        <Link to="/game" className='diffbutton d0' onClick={() => setdiff(0)}>0</Link>
-        <Link to="/game" className='diffbutton d1' onClick={() => setdiff(1)}>1</Link>
-        <Link to="/game" className='diffbutton d2' onClick={() => setdiff(2)}>2</Link>
-        <Link to="/game" className='diffbutton d3' onClick={() => setdiff(3)}>3</Link>
-        <Link to="/game" className='diffbutton d4' onClick={() => setdiff(4)}>4</Link>
-        <Link to="/game" className='diffbutton d5' onClick={() => setdiff(5)}>5</Link>
+        <Link to="/game" className='diffbutton d0' onClick={() => setdiff(0)}>EASY</Link>
+        <Link to="/game" className='diffbutton d1' onClick={() => setdiff(1)}>MEDIUM</Link>
+        <Link to="/game" className='diffbutton d2' onClick={() => setdiff(2)}>HARD</Link>
       </div>
       
 

@@ -8,15 +8,14 @@ import NoPage from './NoPage.jsx'
 function App() {
 
   const [yellow, setyellow] = useState(true);
-  const [rep, setrep] = useState(false);
   const [codelength, setcodelength] = useState(4);
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home setyellow = {setyellow} setrep = {setrep} setcodelength={setcodelength} />} />
-        <Route path="game" element={<Game codelength = {codelength} yellow = {yellow} rep = {rep} />} />
+        <Route path="/" element={<Home setyellow = {setyellow}  setcodelength={setcodelength} />} />
+        <Route path="game" element={<Game codelength = {codelength} yellow = {yellow} />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

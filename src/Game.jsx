@@ -1,12 +1,13 @@
 import './Game.css';
 import React, { useState, useEffect } from 'react';
+import Navbar from './Components/Navbar';
 
 function Game(props) {
 
   const yellowact = props.yellow
-  const rep = props.rep
   const codelength = props.codelength
   
+  const [theme, settheme] = useState('dark')
   const [debug, setdebug] = useState(false)
   const forcedcode = []
   const [code, setcode] = useState([])
@@ -25,9 +26,9 @@ function Game(props) {
     }
     setinputcode(newArr);
     setcode(newCode)
-    const newList = [{code: [], red: 0, green: 0, yellow: 0}];
+    const newList = [];
     setlistofcodes(newList)
-
+    
     //used only in debug mode
     forcecode();
   }
@@ -148,27 +149,42 @@ function Game(props) {
     }
   }
 
+  function Results({c}){
+    if(listofcodes.length > 0){
+      if(yellowact){
+        return (<div className='results'>
+          <span style={{color: "red"}}>Red: {c.red}</span>
+          <span style={{color: "orange"}}>Yellow: {c.yellow}</span>
+          <span style={{color: "green"}}>Green: {c.green}</span>
+        </div>) 
+      }
+      return (<div className='results'>
+        <span style={{color: "red"}}>Red: {c.red}</span>
+        <span style={{color: "green"}}>Green: {c.green}</span>
+      </div>)
+    }
+  }
+
   return (
-    <div className='Game'>
-        <h1 className='title'>CODLE</h1>
-      <div className='code'>
+    <div className='Game' data-theme={theme}>
+      <Navbar settheme = {settheme}/>
+      <h1 className='title'>CODLE</h1>
+      <div className='inputcode'>
       {inputcode.map((number) =>
         <span key = {number.id} className='cell'>{number.number}</span>)}
       </div>
       {listofcodes.map((c, i) =>
       <div key={i} className='code'>
+        <div className='code-wrapper'>
         {c.code.map((number) =>
-        <span key = {number.id} className='cell' style={{color: number.color}}>{number.number}</span>)}
-        <div> 
-          <span>Red: {c.red}</span>
-          {yellowact &&
-            <span>Yellow: {c.yellow}</span>
-          }
-          <span>Green: {c.green}</span>
+        <span key = {number.id} className='cell'>{number.number}</span>)}
         </div>
+        <Results c = {c}/>
       </div>
       )}   
+      {console.log(theme)}
     </div>
+    
   );
 }
 
