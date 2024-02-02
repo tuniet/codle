@@ -1,8 +1,8 @@
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Codle from './Games/Codle/Game.jsx'
-import Wordle from './Games/Wordle/Game.jsx'
+import Codle from './Games/Codle/Codle.jsx'
+import Wordle from './Games/Wordle/Wordle.jsx'
 import Home from './Home.jsx'
 import NoPage from './NoPage.jsx'
 import Navbar from './Components/Navbar.jsx';
@@ -12,8 +12,8 @@ function App() {
 
   return (
     <div data-theme={isDark ? "dark" : "light"}>
-    <Navbar setisdark = {setisdark} isDark = {isDark}/>
     <BrowserRouter>
+    <Navbar setisdark = {setisdark} isDark = {isDark}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="codle" element={<Codle />} />

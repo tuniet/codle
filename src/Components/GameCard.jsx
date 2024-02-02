@@ -4,7 +4,7 @@ import React from "react";
 function GameCard(props){
 
 return(
-        <Link to={props.link} className='card-link'>     <div style={{backgroundImage: `url(${props.background})`}} className='gamecard'>
+        <Link to={props.link} className='card-link'><div style={{backgroundImage: `url(${props.background})`}} className='gamecard'>
         </div>
 </Link>
       

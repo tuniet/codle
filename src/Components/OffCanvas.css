@@ -1,0 +1,52 @@
+.offcanvas{
+    width: 0;
+    height: 100vh;
+    padding: 20px;
+    background-color: #fff;
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    transition: width .1s ease-in-out;
+  }
+  .offcanvas.offcanvas-active{
+    z-index: 101;
+    width: 300px;
+  }
+  .offcanvas-close-button{
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+  }
+  .offcanvas-title{
+    margin: 0%;
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .offcanvas-txt{
+    max-width: 525px;
+    margin: auto;
+  }
+  .overlay-bg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(1px);
+    transition: opacity .4s ease;
+    background-color: rgba(0,0,0,.3);
+  }
+  .overlay-bg.offcanvas-active{
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: all;
+  }

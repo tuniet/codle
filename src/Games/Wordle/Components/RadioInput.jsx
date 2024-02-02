@@ -9,7 +9,7 @@ function RadioInput(props){
         props.setdiff(e.target.value)
         props.changediff(e.target.value)
     }
-    
+
     return(
     <div className="radio-inputs">
         <label className="radio">

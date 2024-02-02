@@ -1,14 +1,12 @@
-import './Game.css';
+import './Codle.css';
 import React, { useState, useEffect } from 'react';
-import Navbar from './Components/Navbar';
+import OptionsMenu from './Components/OptionsMenu';
+import HowtoPlay from './Components/HowToPlay';
 function Game() {
 
   const [diff, setdiff] = useState("easy")
   const [codelength, setcodelength] = useState(4)
   const [yellowact, setyellowact] = useState(true)
-  const [isDark, setisdark] = useState(false)
-  const [debug, setdebug] = useState(false)
-  const forcedcode = []
   const [code, setcode] = useState([])
   const [inputcode, setinputcode] = useState([]);
   const [inputid, setinputid] = useState(0);
@@ -27,21 +25,9 @@ function Game() {
     setcode(newCode)
     const newList = [];
     setlistofcodes(newList)
-    
-    //used only in debug mode
-    forcecode();
+
   }
 
-  function forcecode(){
-    if(forcedcode.length > 0){
-      let newCode = []
-      for(let i = 0; i < forcedcode.length; i++){
-        newCode.push({id: i, number: forcedcode[i]})
-      }
-      setcode(newCode)
-      setdebug(true);
-    }
-  }
 
   useEffect(() => {
     init();
@@ -132,9 +118,7 @@ function Game() {
 
   function handleVictory(){
     let green = 0   
-    if(!debug){
     inputcode.map((c) => {
-      console.log(c.color)
       if (c.color === "green") {
         green++
       }
@@ -143,7 +127,6 @@ function Game() {
     if(green === codelength){
       alert("¡YOU WIN!")
       init();
-    }
     }
   }
 
@@ -167,9 +150,13 @@ function Game() {
     init()
   }
   return (
-    <div className='Game' data-theme={isDark ? "dark" : "light"}>
-      <Navbar setisdark = {setisdark} isDark = {isDark} handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff}/>
-      <h1 className='title'>WORDLE</h1>
+    <div className='Codle' data-theme="">
+      <div className='buttonss'>
+        <HowtoPlay /> 
+        <OptionsMenu handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff}/>
+      </div>
+      <h1 className='title'>CODLE</h1>
+      
       <div className='inputcode'>
       {inputcode.map((number) =>
         <span key = {number.id} className='cell'>{number.number}</span>)}

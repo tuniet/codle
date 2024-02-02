@@ -1,5 +1,5 @@
 import './Home.css';
-import React, { useState } from 'react';
+import React from 'react';
 import GameCard from './Components/GameCard';
 import codle from '../src/Resources/codle.png'
 import wordle from '../src/Resources/wordle.png'
