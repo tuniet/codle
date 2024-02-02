@@ -1,14 +1,18 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Codle from './Games/Codle/Game.jsx'
 import Wordle from './Games/Wordle/Game.jsx'
 import Home from './Home.jsx'
 import NoPage from './NoPage.jsx'
-
+import Navbar from './Components/Navbar.jsx';
 function App() {
 
+  const [isDark, setisdark] = useState(false)
+
   return (
+    <div data-theme={isDark ? "dark" : "light"}>
+    <Navbar setisdark = {setisdark} isDark = {isDark}/>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,6 +21,7 @@ function App() {
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
+    </div>
   )
 }
 

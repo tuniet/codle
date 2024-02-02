@@ -5,8 +5,10 @@
 }
 .gamelist{
     padding: 20px;
+    padding-top: 150px;
 }
 .row{
     display: flex;
     gap: 30px;
 }
+

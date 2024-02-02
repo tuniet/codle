@@ -1,0 +1,5 @@
+.icon{
+    font-size: 25px;
+    cursor: pointer;
+    color: var(--textcolor);
+}

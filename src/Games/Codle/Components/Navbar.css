@@ -1,8 +1,5 @@
 .Navbar{
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
+    
     padding-top: 10px;
     padding-bottom: 10px;
     width: 100vw;
@@ -14,11 +11,7 @@
         font-size: 25px;
         margin: 0;
     }
-    .navicon{
-        font-size: 25px;
-        cursor: pointer;
-        color: var(--textcolor);
-    }
+    
     .navtitle{
         color: var(--textcolor);
     }
@@ -34,25 +27,5 @@
         text-align: start;
     }
 }
-.settings{
-    border-bottom: 1px solid black;
-    font-size: 18px;
-    padding: 10px;
-    width: 100%;
-    text-align: start;
-}
-.settings-switch{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.settings-choose{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.diff{
-    display: flex;
-    justify-content: space-between;
-}
+
 

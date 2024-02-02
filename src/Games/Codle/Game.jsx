@@ -1,12 +1,12 @@
 import './Game.css';
 import React, { useState, useEffect } from 'react';
-import Navbar from './Components/Navbar';
+import OptionsMenu from './Components/OptionsMenu';
+import HowtoPlay from './Components/HowToPlay';
 function Game() {
 
   const [diff, setdiff] = useState("easy")
   const [codelength, setcodelength] = useState(4)
   const [yellowact, setyellowact] = useState(true)
-  const [isDark, setisdark] = useState(false)
   const [debug, setdebug] = useState(false)
   const forcedcode = []
   const [code, setcode] = useState([])
@@ -167,9 +167,13 @@ function Game() {
     init()
   }
   return (
-    <div className='Game' data-theme={isDark ? "dark" : "light"}>
-      <Navbar setisdark = {setisdark} isDark = {isDark} handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff}/>
+    <div className='Game' data-theme="">
+      <div className='buttonss'>
+        <HowtoPlay /> 
+        <OptionsMenu handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff}/>
+      </div>
       <h1 className='title'>CODLE</h1>
+      
       <div className='inputcode'>
       {inputcode.map((number) =>
         <span key = {number.id} className='cell'>{number.number}</span>)}
