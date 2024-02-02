@@ -1,13 +1,12 @@
 import './Game.css';
 import React, { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar';
+function Game() {
 
-function Game(props) {
-
-  const yellowact = props.yellow
-  const codelength = props.codelength
-  
-  const [theme, settheme] = useState('dark')
+  const [diff, setdiff] = useState("easy")
+  const [codelength, setcodelength] = useState(4)
+  const [yellowact, setyellowact] = useState(true)
+  const [isDark, setisdark] = useState(false)
   const [debug, setdebug] = useState(false)
   const forcedcode = []
   const [code, setcode] = useState([])
@@ -102,7 +101,6 @@ function Game(props) {
     let red = 0
 
     inputcode.map((c) => {
-      console.log(c.color)
       if (c.color === "green") {
         green++
       }
@@ -165,9 +163,12 @@ function Game(props) {
     }
   }
 
+  function handlereload(){
+    init()
+  }
   return (
-    <div className='Game' data-theme={theme}>
-      <Navbar settheme = {settheme}/>
+    <div className='Game' data-theme={isDark ? "dark" : "light"}>
+      <Navbar setisdark = {setisdark} isDark = {isDark} handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff}/>
       <h1 className='title'>CODLE</h1>
       <div className='inputcode'>
       {inputcode.map((number) =>
@@ -182,7 +183,6 @@ function Game(props) {
         <Results c = {c}/>
       </div>
       )}   
-      {console.log(theme)}
     </div>
     
   );

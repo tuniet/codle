@@ -3,27 +3,10 @@
     background-color: var(--background);
     min-height: 100vh;
 }
-.diffselection{
+.gamelist{
+    padding: 20px;
+}
+.row{
     display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-}
-.diffbutton{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 90px;
-    height: 50px;
-    text-decoration: none;
-    color: white;
-}
-.d0{
-    background-color: green;
-}
-.d1{
-    background-color: rgb(202, 132, 2);
-}
-.d2{
-    background-color: red;
+    gap: 30px;
 }

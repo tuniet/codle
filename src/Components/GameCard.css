@@ -1,0 +1,10 @@
+.gamecard{
+    width: 500px;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    border: 1px black solid;
+}
+.card-link{
+    max-width: 500px;
+}

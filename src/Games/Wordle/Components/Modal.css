@@ -1,0 +1,52 @@
+.contact-modal{
+    width: calc(100% - 160px);
+    max-width: 600px;
+    padding: 40px;
+    background-color: #fff;
+    color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -10;
+    opacity: 0;
+    transform:translate(-50%, -50%);
+  }
+  .contact-modal.modal-active{
+    z-index: 101;
+    opacity: 1;
+  }
+  .modal-close-button{
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    cursor: pointer;
+  }
+  .modal-title{
+    margin: 0%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 26px;
+    text-align: center;
+  }
+  .modal-txt{
+    max-width: 525px;
+    margin: auto;
+  }
+  .overlay-bg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+    transition: opacity .4s ease;
+    background-color: rgba(0,0,0,.3);
+  }
+  .overlay-bg.modal-active{
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: all;
+  }

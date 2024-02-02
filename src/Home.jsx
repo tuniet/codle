@@ -1,46 +1,26 @@
 import './Home.css';
-import React, {useState} from 'react';
-import { Link } from "react-router-dom";
-import Navbar from './Components/Navbar';
+import React from 'react';
+import GameCard from './Components/GameCard';
 
-function Home(props) {
-  const[backgroundcolor, setbackgroundcolor] = useState("#fff")
+import codle from '../src/Resources/codle.png'
+import wordle from '../src/Resources/wordle.png'
+function Home() {
   /*
   Dificulty
-  3 -> codelength 4, yellow
-  4 -> codelength 4, no yellow
-  5 -> codelength 6, no yellow
+    3 -> codelength 4, yellow
+    4 -> codelength 4, no yellow
+    5 -> codelength 6, no yellow
   */
-  function setdiff(difficulty) {
-    switch (difficulty) {
-      case 0:
-        props.setcodelength(4)
-        props.setyellow(true)
-        break;
-      case 1:
-        props.setcodelength(4)
-        props.setyellow(false)
-        break;
-      case 2:
-        props.setcodelength(6)
-        props.setyellow(false)
-        break;
-      default:
-      // do nothing
-    }
-  }
 
   return (
-    <div className='Home' data-theme="dark">
-      <Navbar />
-      <h1 className='title'>CODLE</h1>
-			<h3> Select difficulty</h3>
-      <div className='diffselection'>
-        <Link to="/game" className='diffbutton d0' onClick={() => setdiff(0)}>EASY</Link>
-        <Link to="/game" className='diffbutton d1' onClick={() => setdiff(1)}>MEDIUM</Link>
-        <Link to="/game" className='diffbutton d2' onClick={() => setdiff(2)}>HARD</Link>
+    <div className='Home'>
+      <h1 className='title'>Tuniet Games</h1>
+      <div className='gamelist'>
+        <div className='row'>
+          <GameCard background={codle} link="codle"/>
+          <GameCard background={wordle} link="wordle"/>
+          </div>
       </div>
-      
 
     </div>
   )

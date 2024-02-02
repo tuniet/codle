@@ -34,4 +34,25 @@
         text-align: start;
     }
 }
+.settings{
+    border-bottom: 1px solid black;
+    font-size: 18px;
+    padding: 10px;
+    width: 100%;
+    text-align: start;
+}
+.settings-switch{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.settings-choose{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.diff{
+    display: flex;
+    justify-content: space-between;
+}
 
