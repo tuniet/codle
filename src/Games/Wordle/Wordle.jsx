@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import HowtoPlay from './Components/HowToPlay';
 function Wordle() {
 
-  const [codelength, setcodelength] = useState(6)
-  const [codetrys, setcodetrys] = useState(4)
+  const [codelength, setcodelength] = useState(5)
+  const [codetrys, setcodetrys] = useState(5)
   const [currentrys, setcurrenttrys] = useState(0)
   const [code, setcode] = useState([])
   const [inputcode, setinputcode] = useState([]);
@@ -35,11 +35,12 @@ function Wordle() {
     }
     setinputcode(newArr);
     setlistofcodes(newList)
+    setcurrenttrys(0)
   }
 
   useEffect(() => {
     init();
-  }, []);
+  }, [codelength, codetrys]);
 
   document.onkeydown = function(e) {
     if(e.which >= 65 && e.which <= 90 && inputid < codelength){
@@ -47,7 +48,6 @@ function Wordle() {
       setinputid(inputid + 1)
     }
     else if(e.code === "Backspace" && inputid > 0){
-      console.log("b")
       handleinputchange(inputid - 1, " ")
       setinputid(inputid - 1)
     }
@@ -88,6 +88,7 @@ function Wordle() {
       return {id: i + 1, word: c.word}
     })
     setlistofcodes([{id: 0, word: inputcode}, ...nextlist.filter(w => w.id !== codetrys)])
+    setcurrenttrys(currentrys + 1)
   }
 
   function handleClearInput(){
@@ -100,9 +101,13 @@ function Wordle() {
   }
 
   function handleVictory(){
+    if(currentrys === codetrys){
+      alert("YOU LOSE!")
+      init()
+    }
+    else{
     let green = 0   
     inputcode.map((c) => {
-      console.log(c.color)
       if (c.color === "green") {
         green++
       }
@@ -112,18 +117,20 @@ function Wordle() {
       alert("¡YOU WIN!")
       init();
     }
+    }
   }
 
   function handlereload(){
-    init()
+    setcodelength(8)
   }
+
   return (
     <div className='Wordle' data-theme="">
       <div className='buttonss'>
-        <HowtoPlay /> 
+        <HowtoPlay />
+        <button onClick={handlereload}>reload</button>
       </div>
       <h1 className='title'>WORDLE</h1>
-      
       <div className='inputcode'>
       {inputcode.map((letter) =>
         <span key = {letter.id} className='cell'>{letter.letter}</span>)}
@@ -136,7 +143,6 @@ function Wordle() {
         </div>
       </div>
         )}
-        {console.log(listofcodes)}
     </div>
     
   );

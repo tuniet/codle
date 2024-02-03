@@ -50,3 +50,6 @@
     cursor: pointer;
     pointer-events: all;
   }
+  ul{
+    text-align: start;
+  }
