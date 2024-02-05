@@ -31,7 +31,7 @@ function HowtoPlay() {
             <div className='howto'>
                 <h3 className='modal-title'>How to play</h3>
                 <p className='modal-text'>Type numbers to guess the code. When you submit a guess, the game will show you how close you are to the correct answer with either a green, yellow, or red "hint."</p>
-                <ul>
+                <ul className='listt'>
                     <li>A<strong style={{color: "green"}}> green</strong> hint means a number <strong>is in the code and in the proper position</strong>.</li>
                     <li>A <strong style={{color: "orange"}}> yellow</strong> hint means a number <strong>is in the code but not in the proper position</strong>.</li>
                     <li>A <strong style={{color: "red"}}>red</strong> hint means a number is not in the code at all.</li>

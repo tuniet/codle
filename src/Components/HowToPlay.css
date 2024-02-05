@@ -3,3 +3,6 @@
     cursor: pointer;
     color: var(--textcolor);
 }
+.listt{
+    text-align: start;
+}

@@ -2,6 +2,7 @@ import './OptionsMenu.css';
 import React , { useState, useEffect}from 'react';
 import Modal from './Modal';
 import RadioInput from './RadioInput';
+import ThemeSwitch from './ThemeSwitch';
 import { AiOutlineSliders } from "react-icons/ai";
 
 function OptionsMenu(props) {
@@ -45,6 +46,7 @@ function OptionsMenu(props) {
               <div>
                   <h3 className='modal-title'>Game settings</h3>
                   <div className='settings settings-choose'>Select difficulty: <div className='diff'><RadioInput setdiff = {props.setdiff} diff = {props.diff} changediff = {changediff}/><button onClick={handlediffswitch}>Change Diffculty</button></div></div>
+                  <div className='settings settings-switch'>Switch to dark mode <ThemeSwitch setisdark = {props.setisdark} isDark = {props.isDark} /></div>
               </div>
           )
       }

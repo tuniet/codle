@@ -2,7 +2,8 @@ import './Codle.css';
 import React, { useState, useEffect } from 'react';
 import OptionsMenu from './Components/OptionsMenu';
 import HowtoPlay from './Components/HowToPlay';
-function Game() {
+
+function Codle(props) {
 
   const [diff, setdiff] = useState("easy")
   const [codelength, setcodelength] = useState(4)
@@ -153,7 +154,7 @@ function Game() {
     <div className='Codle' data-theme="">
       <div className='buttonss'>
         <HowtoPlay /> 
-        <OptionsMenu handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff}/>
+        <OptionsMenu handlereload={handlereload} setyellowact = {setyellowact} setcodelength = {setcodelength} setdiff={setdiff} diff = {diff} setisdark = {props.setisdark} isDark = {props.isDark}/>
       </div>
       <h1 className='title'>CODLE</h1>
       
@@ -175,4 +176,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default Codle;
