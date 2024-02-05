@@ -1,15 +1,48 @@
 import './Wordle.css';
 import React, { useState, useEffect } from 'react';
 import HowtoPlay from './Components/HowToPlay';
+import DropdownSelect from './Components/DropdownSelect';
+import UsedLetters from './Components/UsedLetters'
+const letterList = [
+  {letter: "q" , color: "none"},
+  {letter: "w" , color: "none"},
+  {letter: "e" , color: "none"},
+  {letter: "r" , color: "none"},
+  {letter: "t" , color: "none"},
+  {letter: "y" , color: "none"},
+  {letter: "u" , color: "none"},
+  {letter: "i" , color: "none"},
+  {letter: "o" , color: "none"},
+  {letter: "p" , color: "none"},
+  {letter: "a" , color: "none"},
+  {letter: "s" , color: "none"},
+  {letter: "d" , color: "none"},
+  {letter: "f" , color: "none"},
+  {letter: "g" , color: "none"},
+  {letter: "h" , color: "none"},
+  {letter: "j" , color: "none"},
+  {letter: "k" , color: "none"},
+  {letter: "l" , color: "none"},
+  {letter: "z" , color: "none"},
+  {letter: "x" , color: "none"},
+  {letter: "c" , color: "none"},
+  {letter: "v" , color: "none"},
+  {letter: "b" , color: "none"},
+  {letter: "n" , color: "none"},
+  {letter: "m" , color: "none"},
+
+]
 function Wordle() {
 
-  const [codelength, setcodelength] = useState(5)
-  const [codetrys, setcodetrys] = useState(5)
-  const [currentrys, setcurrenttrys] = useState(0)
-  const [code, setcode] = useState([])
+  const [selectedDiff, setSelected] = useState("Medium");
+  const [codelength, setcodelength] = useState(5);
+  const [codetrys, setcodetrys] = useState(5);
+  const [currentrys, setcurrenttrys] = useState(0);
+  const [code, setcode] = useState([]);
   const [inputcode, setinputcode] = useState([]);
   const [inputid, setinputid] = useState(0);
   const [listofcodes, setlistofcodes] = useState([]);
+  const [usedletters, setUsedLetters] = useState(letterList);
 
   useEffect(() => {
       fetch(`https://random-word-api.herokuapp.com/word?length=${codelength}`)
@@ -40,7 +73,27 @@ function Wordle() {
 
   useEffect(() => {
     init();
-  }, [codelength, codetrys]);
+  }, [codelength]);
+  useEffect(() => {
+    changediff(selectedDiff)
+  }, [selectedDiff]);
+
+  function changediff(diff){
+    switch(diff){
+      case "Easy":
+        setcodelength(4)
+        console.log("ez")
+        break
+      case "Medium":
+        setcodelength(5)
+        break
+      case "Hard":
+        setcodelength(6)
+        break
+      default:
+        //nothing
+    }
+  }
 
   document.onkeydown = function(e) {
     if(e.which >= 65 && e.which <= 90 && inputid < codelength){
@@ -54,8 +107,25 @@ function Wordle() {
     else if(e.code === "Enter" && inputid === codelength){
       handleaddrow()
       handleVictory()
+      colorLetterList()
       handleClearInput()
     }
+  }
+
+  function setlistcolor(l){
+    let color = l.color;
+    inputcode.map((c) => {
+      if(c.letter === l.letter){
+        color = c.color
+      }
+    }) 
+    return color
+  }
+
+  function colorLetterList(){
+    setUsedLetters(usedletters.map((l) => {
+      return {letter : l.letter, color: setlistcolor(l)}
+    }))
   }
 
   function handleinputchange(ind, lett){
@@ -79,10 +149,9 @@ function Wordle() {
       }
     }
     if(green) {return "green"}
-    else if(yellow) {return "yellow"}
+    else if(yellow) {return "orange"}
     else {return "red"}
   }
-
   function handleaddrow(){
     const nextlist = listofcodes.map((c, i) => {
       return {id: i + 1, word: c.word}
@@ -120,15 +189,18 @@ function Wordle() {
     }
   }
 
-  function handlereload(){
-    setcodelength(8)
-  }
-
   return (
     <div className='Wordle' data-theme="">
       <div className='buttonss'>
+        <p>Difficulty: </p>
+        <DropdownSelect
+        title=""
+        options={["Easy", "Medium", "Hard"]}
+        placeholder={selectedDiff}
+        setSelected = {setSelected}
+        />
+        <UsedLetters usedletters = {usedletters}/>
         <HowtoPlay />
-        <button onClick={handlereload}>reload</button>
       </div>
       <h1 className='title'>WORDLE</h1>
       <div className='inputcode'>
@@ -143,6 +215,7 @@ function Wordle() {
         </div>
       </div>
         )}
+        {console.log(usedletters)}
     </div>
     
   );

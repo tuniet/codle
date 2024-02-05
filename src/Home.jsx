@@ -1,8 +1,8 @@
 import './Home.css';
 import React from 'react';
 import GameCard from './Components/GameCard';
-import codle from '../src/Resources/codle.png'
-import wordle from '../src/Resources/wordle.png'
+import codle from '../src/Resources/Images/codle.png'
+import wordle from '../src/Resources/Images/wordle.png'
 function Home() {
 
   

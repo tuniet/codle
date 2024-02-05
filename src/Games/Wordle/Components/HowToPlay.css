@@ -1,5 +1,6 @@
 .icon{
     font-size: 25px;
+    max-height: 25px;
     cursor: pointer;
     color: var(--textcolor);
 }
